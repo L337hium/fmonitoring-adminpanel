@@ -8,5 +8,7 @@
     ,	"stylus": "*"
     ,	"nib": "*"
     ,	"bootstrap3-stylus": "*"
+    , "mongoose": "*"
+    , "express-mongoose": "*"
   }
 }

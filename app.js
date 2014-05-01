@@ -5,6 +5,9 @@ var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib')
   , bootstrap = require('bootstrap3-stylus')
+  , mongoose = require ('mongoose')
+
+require('express-mongoose')
 
 // load express
 var app = express()
@@ -30,10 +33,9 @@ app.use(express.static(__dirname + '/assets'))
 
 app.get('/', function (req, res) {
   res.render('index',
-  { title : 'Home' }
+    { title : 'Home' }
   )
 })
-
 
 app.listen(3000)
 console.log( 'express webserver running on http://localhost:3000');
