@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+head
+  include includes/htmlhead
+  link(href='/stylesheets/leaflet.css', rel='stylesheet')
+body
+  include includes/navbar
+  .container-fluid
+    .row
+      .col-sm-3.col-md-2.sidebar
+        block sidebar
+        
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        block content
+  
+  // Javascript
+  include includes/scripts
+  script(src='/scripts/leaflet.js')
+  script(src='/scripts/dashboard.js')
