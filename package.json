@@ -1,14 +1,35 @@
 {
-  "name": "node-webdev-base",
+  "name": "fmonitoring-adminpanel",
   "version": "0.0.1",
   "private": "true",
-  "dependencies": 
-		{	"express": "3.0.0alpha4"
-		,	"jade": "*"
-    ,	"stylus": "*"
-    ,	"nib": "*"
-    ,	"bootstrap3-stylus": "*"
-    , "mongoose": "*"
-    , "express-mongoose": "*"
-  }
+  "dependencies": {
+    "express": "3.0.0alpha4",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",
+    "bootstrap3-stylus": "*",
+    "mongoose": "*",
+    "express-mongoose": "*",
+    "exec": "*"
+  },
+  "description": "administration and monitoring utility",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/L337hium/fmonitoring-adminpanel.git"
+  },
+  "keywords": [
+    "freifunk",
+    "monitoring"
+  ],
+  "author": "Bernd Naumann",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/L337hium/fmonitoring-adminpanel/issues"
+  },
+  "homepage": "https://github.com/L337hium/fmonitoring-adminpanel"
 }

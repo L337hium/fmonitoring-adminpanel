@@ -6,6 +6,7 @@ var express = require('express')
   , nib = require('nib')
   , bootstrap = require('bootstrap3-stylus')
   , mongoose = require ('mongoose')
+  , exec = require ('exec')
 
 require('express-mongoose')
 
@@ -36,6 +37,16 @@ app.get('/', function (req, res) {
     { title : 'Home' }
   )
 })
-
+app.get('/collect', function (req, res) {
+  exec('ssh -nqt root@10.63.43.1 "sh /usr/share/fmonitoring/get_monitoring.sh"',
+    function(error, stdout, stderr) {
+      var collection = JSON.parse(stdout);
+      res.render('index',
+        { title: 'Collection data'
+        , collection: collection
+	}
+      );
+   });
+})
 app.listen(3000)
 console.log( 'express webserver running on http://localhost:3000');
