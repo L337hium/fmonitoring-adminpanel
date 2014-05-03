@@ -46,8 +46,8 @@ module.exports = function (app) {
   
   // routing for get request of the homepage '/'
   app.get('/', function (req, res) {
-    res.render('index',
-      { title : 'Home' }
-    )
+    var config = app.jadeConfig;
+        config.title = 'Home';
+    res.render('index', config)
   })
 }
