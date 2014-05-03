@@ -31,7 +31,7 @@ mongoose.connect('mongodb://localhost/'+databaseName, function (err) {
   // activate dev output of express
   app.use(express.logger('dev'))
 
-  // setup some variables for the render engine
+  // setup some global variables for the render engine
   app.jadeConfig = 
     { project : 'node-webdev-base'
     }

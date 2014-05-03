@@ -1,0 +1,72 @@
+doctype html
+html(lang='en')
+head
+  include includes/htmlhead
+  link(href='/stylesheets/companyCarousel.css', rel='stylesheet')
+body
+  include includes/navbar
+  
+  // Carousel with 3 Slides
+  
+  #myCarousel.carousel.slide(data-ride='carousel')
+    //
+       Indicators 
+    ol.carousel-indicators
+      li.active(data-target='#myCarousel', data-slide-to='0')
+      li(data-target='#myCarousel', data-slide-to='1')
+      li(data-target='#myCarousel', data-slide-to='2')
+    .carousel-inner
+      .item.active
+        block carouselSlide-first
+      .item
+        block carouselSlide-second
+      .item
+        block carouselSlide-third
+    a.left.carousel-control(href='#myCarousel', data-slide='prev')
+      span.glyphicon.glyphicon-chevron-left
+    a.right.carousel-control(href='#myCarousel', data-slide='next')
+      span.glyphicon.glyphicon-chevron-right
+  
+  // Marketing messaging and featurettes
+  
+  .container.marketing
+    // Three columns of text below the carousel 
+    .row
+      .col-lg-4
+        block marketing-first
+
+      .col-lg-4
+        block marketing-second
+
+      .col-lg-4
+        block marketing-third
+
+    // START THE FEATURETTES 
+    hr.featurette-divider
+    .row.featurette
+      block featurette-first
+    hr.featurette-divider
+    .row.featurette
+      block featurette-second
+    hr.featurette-divider
+    .row.featurette
+      block featurette-third
+    hr.featurette-divider
+    //
+       /END THE FEATURETTES 
+    //
+       FOOTER 
+    footer
+      p.pull-right
+        a(href='#') Back to top
+      p
+        | © 2014 Company, Inc. ·
+        a(href='#') Privacy
+        | ·
+        a(href='#') Terms
+
+  //
+     Bootstrap core JavaScript
+     Placed at the end of the document so the pages load faster 
+     
+  include includes/scripts
