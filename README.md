@@ -1,4 +1,4 @@
-node-webdev-base
-================
+fmonitoring-adminpanel
+======================
 
-base project to simplify our webdevelopment
+NodeJS adminpanel for fmonitoring.
