@@ -1,11 +1,13 @@
 extend templates/base
 block content
   h1 Bootstrap starter template
-        p.lead
-          | Use this document as a way to quickly start any new project.
-          br
-          | All you get is this text and a mostly barebones HTML document.
-        a.btn(href='/collect') Collect data
-        if collection
-          h2= collection.date
+  p.lead
+    | Use this document as a way to quickly start any new project.
+    br
+    | All you get is this text and a mostly barebones HTML document.
+  a.btn(href='/collect') Collect data
+  if collection
+    p
+    | Date: 
+    = Date(collection.date * 1000)
           

@@ -31,12 +31,13 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/assets'))
 
 // basic routing
-
+// index
 app.get('/', function (req, res) {
   res.render('index',
     { title : 'Home' }
   )
 })
+// collect
 app.get('/collect', function (req, res) {
   exec('ssh -nqt root@10.63.43.1 "sh /usr/share/fmonitoring/get_monitoring.sh"',
     function(error, stdout, stderr) {
@@ -49,4 +50,4 @@ app.get('/collect', function (req, res) {
    });
 })
 app.listen(3000)
-console.log( 'express webserver running on http://localhost:3000');
+console.log('express webserver running on http://localhost:3000');
