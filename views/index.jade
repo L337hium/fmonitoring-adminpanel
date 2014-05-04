@@ -19,20 +19,25 @@ block content
       | cpu-load: #{collection.system['cpu-load']}
       br
       | mem-free: #{collection.system['mem-free']} / #{collection.system['mem-total']}
-      br
+    p
       each item in collection.olsr
         each link in collection.olsr.neighbors.links
-          #{link.localIP}
+          | localIP: #{link.localIP}
           br
-          #{link.remoteIP}
+          | remoteIP: #{link.remoteIP}
           br
-          #{link.validityTime}
+          | validityTime: #{link.validityTime}
           br
-          #{link.linkQuality}
+          | linkQuality: #{link.linkQuality}
           br
-          #{link.neighborLinkQuality}
+          | neighborLinkQuality: #{link.neighborLinkQuality}
           br
-          #{link.linkCost}
+          | linkCost: #{link.linkCost}
+          br
         br
-      br
-      each network in collection.network
+    p
+      // | ifname: #{collection.network.interfaces[0].ifname}
+      each interface in collection.network.interfaces
+        | ifname: #{interface.ifname}
+        br
+

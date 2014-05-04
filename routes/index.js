@@ -47,7 +47,7 @@ module.exports = function (app) {
   // routing for get request of the homepage '/'
   app.get('/', function (req, res) {
     var config = app.jadeConfig;
-        config.title = 'Home';
+        config.title = 'fmonitoring-adminpanel: Home';
     res.render('index', config)
   })
 
@@ -56,10 +56,10 @@ module.exports = function (app) {
     exec('ssh -nqt root@10.63.43.1 "sh /usr/share/fmonitoring/get_monitoring.sh"',
       function(error, stdout, stderr) {
 	var config = app.jadeConfig;
-            config.title = 'Collection data';
+            config.title = 'fmonitoring-adminpanel: Collection data';
             config.collection = JSON.parse(stdout);
             config.collection.date = Date(config.collection.date * 1000);
-        console.log(config.collection);
+        console.log(config.collection.network.interfaces);
         res.render('index', config)
        }
     );
