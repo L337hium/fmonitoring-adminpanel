@@ -19,25 +19,36 @@ block content
       | cpu-load: #{collection.system['cpu-load']}
       br
       | mem-free: #{collection.system['mem-free']} / #{collection.system['mem-total']}
-    p
-      each item in collection.olsr
-        each link in collection.olsr.neighbors.links
-          | localIP: #{link.localIP}
-          br
-          | remoteIP: #{link.remoteIP}
-          br
-          | validityTime: #{link.validityTime}
-          br
-          | linkQuality: #{link.linkQuality}
-          br
-          | neighborLinkQuality: #{link.neighborLinkQuality}
-          br
-          | linkCost: #{link.linkCost}
-          br
+    h4 OLSR
+    each link in collection.olsr.neighbors.links
+      p
+        | localIP: #{link.localIP}
         br
-    p
-      // | ifname: #{collection.network.interfaces[0].ifname}
-      each interface in collection.network.interfaces
+        | remoteIP: #{link.remoteIP}
+        br
+        | validityTime: #{link.validityTime}
+        br
+        | linkQuality: #{link.linkQuality}
+        br
+        | neighborLinkQuality: #{link.neighborLinkQuality}
+        br
+        | linkCost: #{link.linkCost}
+        br
+    h4 Network
+    // | ifname: #{collection.network.interfaces[0].ifname}
+    p connected clients: #{collection.network.clients}
+    each interface in collection.network.interfaces
+      p
         | ifname: #{interface.ifname}
+        br
+        | device: #{interface.device}
+        br
+        | macaddr: #{interface.macaddr}
+        br
+        // #{interface.up}
+        // #{interface.link}
+        | rx_bytes: #{interface.rx_bytes} --- rx_packets: #{interface.rx_packets}
+        br
+        | tx_bytes: #{interface.tx_bytes} --- tx_packets: #{interface.tx_packets}
         br
 
