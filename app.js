@@ -1,23 +1,12 @@
-/*
- * Module dependencies
+/* 
+ *  Module dependencies
  */
+ 
 var express = require('express')
-  , stylus = require('stylus')
-  , nib = require('nib')
-  , bootstrap = require('bootstrap3-stylus')
   , mongoose = require ('mongoose')
   , exec = require ('exec')
-
+ 
 require('express-mongoose')
-
-// load express
-var app = express()
-function compile(str, path) {
-  return stylus(str)
-    .set('filename', path)
-    .use(nib())
-    .use(bootstrap())
-}
 
 // middleware
 app.set('views', __dirname + '/views')
@@ -30,24 +19,30 @@ app.use(stylus.middleware(
 ))
 app.use(express.static(__dirname + '/assets'))
 
-// basic routing
-// index
-app.get('/', function (req, res) {
-  res.render('index',
-    { title : 'Home' }
-  )
-})
-// collect
-app.get('/collect', function (req, res) {
-  exec('ssh -nqt root@10.63.43.1 "sh /usr/share/fmonitoring/get_monitoring.sh"',
-    function(error, stdout, stderr) {
-      var collection = JSON.parse(stdout);
-      res.render('index',
-        { title: 'Collection data'
-        , collection: collection
-	}
-      );
-   });
-})
-app.listen(3000)
-console.log('express webserver running on http://localhost:3000');
+
+// load database models into mongoose
+var models = require('./models');
+
+// connect to database 
+var databaseName = 'fmonitoring';
+mongoose.connect('mongodb://localhost/'+databaseName, function (err) {
+
+  // load express
+  var app = express()
+
+  // load session / user management middleware
+  require('./middleware')(app);
+
+  // activate dev output of express
+  app.use(express.logger('dev'))
+
+  // setup some global variables for the render engine
+  app.jadeConfig = 
+    { project : 'fmonitoring-adminpanel'
+    }
+  // express routing and render engine setup
+  require('./routes')(app);
+
+  app.listen(3000)
+  console.log( 'express webserver running on http://localhost:3000');
+});
