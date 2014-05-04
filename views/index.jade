@@ -7,7 +7,32 @@ block content
     | All you get is this text and a mostly barebones HTML document.
   a.btn(href='/collect') Collect data
   if collection
-    p
-    | Date: 
-    = Date(collection.date * 1000)
-          
+    p Date: #{collection['date']}
+    h3 System: 
+    h4 Hostname: #{collection.system['hostname']}
+    p hardware: #{collection.system['hardware']}
+      br
+      | openwrt-version: #{collection.system['openwrt-version']}
+      br
+      | uptime: #{collection.system['uptime']}
+      br
+      | cpu-load: #{collection.system['cpu-load']}
+      br
+      | mem-free: #{collection.system['mem-free']} / #{collection.system['mem-total']}
+      br
+      each item in collection.olsr
+        each link in collection.olsr.neighbors.links
+          #{link.localIP}
+          br
+          #{link.remoteIP}
+          br
+          #{link.validityTime}
+          br
+          #{link.linkQuality}
+          br
+          #{link.neighborLinkQuality}
+          br
+          #{link.linkCost}
+        br
+      br
+      each network in collection.network

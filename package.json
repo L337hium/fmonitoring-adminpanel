@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "private": "true",
   "dependencies": {
-    "express": "3.0.0alpha4",
-    "jade": "*",
-    "stylus": "*",
-    "nib": "*",
-    "bootstrap3-stylus": "*",
-    "mongoose": "*",
-    "express-mongoose": "*",
-    "exec": "*"
+      "express": "3.0.0alpha4"
+    , "jade": "*"
+    , "stylus": "*"
+    , "nib": "*"
+    , "bootstrap3-stylus": "*"
+    , "mongoose": "*"
+    , "express-mongoose": "*"
+    , "exec": "*"
+    , "flot": "*"
+    , "jquery": "*"
   },
   "description": "administration and monitoring utility",
   "main": "app.js",

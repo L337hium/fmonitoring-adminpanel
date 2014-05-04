@@ -2,6 +2,7 @@ var express = require('express')
   , stylus = require('stylus')
   , nib = require('nib')
   , bootstrap = require('bootstrap3-stylus')
+  , exec = require('exec')
 
 module.exports = function (app) {
   // ------------------------------------------------------------
@@ -54,11 +55,13 @@ module.exports = function (app) {
   app.get('/collect', function (req, res) {
     exec('ssh -nqt root@10.63.43.1 "sh /usr/share/fmonitoring/get_monitoring.sh"',
       function(error, stdout, stderr) {
-        var collection = JSON.parse(stdout);
 	var config = app.jadeConfig;
-            config.title = 'Collection data'
+            config.title = 'Collection data';
+            config.collection = JSON.parse(stdout);
+            config.collection.date = Date(config.collection.date * 1000);
+        console.log(config.collection);
         res.render('index', config)
-        );
-     });
+       }
+    );
   })
 }

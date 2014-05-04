@@ -8,18 +8,6 @@ var express = require('express')
  
 require('express-mongoose')
 
-// middleware
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
-app.use(express.logger('dev'))
-app.use(stylus.middleware(
-  { src: __dirname + '/assets'
-  , compile: compile
-  }
-))
-app.use(express.static(__dirname + '/assets'))
-
-
 // load database models into mongoose
 var models = require('./models');
 
